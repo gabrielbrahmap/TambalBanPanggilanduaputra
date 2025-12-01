@@ -1,0 +1,767 @@
+/* =======================================================================================
+   1. Variabel Global, Import Font, dan Konfigurasi Dasar (±50 Baris)
+   ======================================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    /* Palet Warna Utama */
+    --warna-utama: #FFC300; /* Kuning Terang (Primary Accent) */
+    --warna-kedua: #111111; /* Hitam Pekat (Dark Background) */
+    --warna-latar: #1F1F1F; /* Latar Belakang Konten (Section Background) */
+    --warna-teks: #FFFFFF; /* Putih (General Text Color) */
+    --warna-sub-teks: #DDDDDD; /* Abu Muda (Secondary Text Color) */
+    --warna-border-gelap: #333333; /* Border & Separator */
+    --warna-highlight: #FFD700; /* Emas (Sub-Accent) */
+
+    /* Konfigurasi Tipografi */
+    --font-heading: 'Oswald', sans-serif; 
+    --font-body: 'Poppins', sans-serif; 
+    --font-size-base: 16px; 
+    --line-height-body: 1.75; 
+    --line-height-heading: 1.1;
+
+    /* Konfigurasi Animasi & Spacing */
+    --animasi-transisi: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --radius-default: 8px;
+    --padding-section: 120px 0;
+}
+
+/* =======================================================================================
+   2. Reset, Body, dan Scrollbar (±40 Baris)
+   ======================================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: var(--line-height-body); 
+    background-color: var(--warna-kedua);
+    color: var(--warna-teks);
+    overflow-x: hidden;
+    font-size: var(--font-size-base); 
+    -webkit-font-smoothing: antialiased; 
+}
+
+/* Kustomisasi Scrollbar untuk Desktop */
+body::-webkit-scrollbar { width: 10px; }
+body::-webkit-scrollbar-track { 
+    background: #181818; 
+    border-left: 2px solid #000;
+}
+body::-webkit-scrollbar-thumb { 
+    background-color: var(--warna-utama); 
+    border-radius: 5px; 
+    border: 2px solid #000;
+    transition: background-color 0.3s;
+}
+body::-webkit-scrollbar-thumb:hover {
+    background-color: var(--warna-highlight);
+}
+
+/* Kontainer Utama (Center Alignment) */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 30px; 
+    display: flex;
+    /* DIGANTI: Sekarang hanya menampung konten */
+    /* justify-content: center; */ 
+    align-items: center;
+    position: relative;
+}
+
+/* =======================================================================================
+   3. Tipografi dan Heading (±70 Baris)
+   ======================================================================================= */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    color: var(--warna-utama);
+    line-height: var(--line-height-heading); 
+    letter-spacing: 1.5px;
+    transition: color 0.3s ease;
+}
+
+h1 {
+    font-size: 5em; 
+    font-weight: 900;
+    text-shadow: 3px 3px var(--warna-kedua);
+    margin-bottom: 25px;
+    letter-spacing: 6px;
+}
+
+h2 {
+    font-size: 3.5em;
+    font-weight: 800;
+    display: inline-block;
+    padding-bottom: 8px;
+    border-bottom: 6px solid var(--warna-utama); 
+    margin-top: 30px; 
+    margin-bottom: 50px; 
+    text-align: center;
+    width: auto;
+}
+
+h3 {
+    font-size: 2em;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: var(--warna-highlight); 
+}
+
+h4 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+p {
+    font-family: var(--font-body);
+    margin-bottom: 20px; 
+    color: var(--warna-sub-teks);
+    font-weight: 300; 
+}
+
+/* Teks Spesial */
+.hero-tagline {
+    font-size: 1.4em; 
+    color: var(--warna-utama);
+    font-weight: 500;
+    margin-bottom: 40px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.text-highlight {
+    color: var(--warna-utama);
+    font-weight: 600;
+}
+
+.text-center { 
+    text-align: center; 
+}
+
+/* =======================================================================================
+   4. Header, Navigasi, dan Logo (VERSI LOGO DI KIRI, BUKAN DI TENGAH)
+   ======================================================================================= */
+header {
+    background-color: rgba(17, 17, 17, 0.98); 
+    backdrop-filter: blur(10px); 
+    padding: 15px 0; 
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9); 
+    transition: all var(--animasi-transisi);
+    border-bottom: 1px solid rgba(255, 195, 0, 0.2);
+}
+
+header.scrolled {
+    padding: 10px 0; 
+    background-color: rgba(0, 0, 0, 0.98);
+}
+
+/* Container Header untuk penempatan logo dan nav */
+header .container {
+    justify-content: space-between; /* Untuk memisahkan Logo dan Navigasi */
+}
+
+/* ================================================== */
+/* STYLING KHUSUS LOGO DI KIRI */
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.logo-img {
+    height: 50px; /* **Logo Gambar di Kiri Lebih Kecil** */
+    width: auto;
+    display: block;
+    margin-right: 15px; /* Jarak antara logo gambar dan teks */
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 195, 0, 0.5)); 
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    font-weight: 800;
+    color: var(--warna-utama);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.logo-container:hover .logo-text {
+    color: var(--warna-highlight);
+}
+
+.logo-container:hover .logo-img {
+    transform: scale(1.05);
+}
+/* ================================================== */
+
+
+/* Styling NAVIGASI CONTAINER */
+nav {
+    width: auto; /* Nav hanya menempati ruang yang dibutuhkan */
+    display: flex;
+    justify-content: flex-end; /* Menu ke Kanan */
+}
+
+.nav-list { 
+    list-style: none;
+    display: flex;
+    gap: 10px; 
+    justify-content: flex-end; /* Menu ke Kanan */
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* Item Logo Navigasi (HILANG) */
+/* .nav-logo-item TIDAK DIPAKAI LAGI */
+
+/* Styling Menu (sama seperti sebelumnya) */
+.nav-list li a {
+    font-family: var(--font-heading); 
+    color: #AAAAAA; 
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 20px; 
+    position: relative;
+    transition: all 0.4s ease;
+    border-radius: var(--radius-default);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Efek Garis Bawah Navigasi */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    width: 0%; 
+    height: 4px;
+    background-color: var(--warna-utama);
+    transform: translateX(-50%);
+    transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1); 
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: 100%; 
+}
+
+/* Efek Hover dan Aktif Navigasi */
+nav ul li a:hover {
+    color: var(--warna-utama); 
+    background-color: rgba(255, 195, 0, 0.1); 
+}
+
+nav ul li a.active {
+    color: var(--warna-utama); 
+    background-color: rgba(255, 195, 0, 0.2); 
+    font-weight: 700;
+    border: 1px solid var(--warna-utama);
+    padding: 11px 19px; 
+}
+
+
+/* =======================================================================================
+   5. Tombol (Buttons) dan Form (±80 Baris)
+   ======================================================================================= */
+/* [KODE BUTTONS DAN FORM SAMA DENGAN SEBELUMNYA] */
+.btn {
+    display: inline-block;
+    background-color: var(--warna-utama);
+    color: var(--warna-kedua);
+    padding: 16px 45px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 2px solid transparent;
+    border-radius: var(--radius-default);
+    transition: all var(--animasi-transisi);
+    box-shadow: 0 12px 25px rgba(255, 195, 0, 0.5);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-family: var(--font-heading);
+    font-size: 1.1em;
+}
+
+.btn:hover {
+    color: var(--warna-kedua);
+    background-color: var(--warna-teks); 
+    border-color: var(--warna-utama);
+    box-shadow: 0 18px 35px rgba(255, 195, 0, 0.7);
+    transform: translateY(-5px);
+}
+
+/* Tombol WhatsApp */
+.btn-whatsapp {
+    background-color: #25D366;
+    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5);
+    color: #FFFFFF;
+}
+.btn-whatsapp:hover {
+    background-color: #1DA851;
+    border-color: #FFFFFF;
+    box-shadow: 0 18px 35px rgba(37, 211, 102, 0.7);
+}
+
+/* Form Input Styling */
+.form-group {
+    margin-bottom: 30px; 
+}
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--warna-utama);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 16px; 
+    border: 2px solid var(--warna-border-gelap);
+    border-radius: 8px;
+    background-color: #2A2A2A;
+    color: var(--warna-teks);
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: var(--warna-utama);
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 195, 0, 0.6);
+    background-color: #1A1A1A;
+}
+.form-kontak {
+    padding: 30px; 
+    background-color: var(--warna-kedua);
+    border-radius: 12px;
+    border: 1px solid var(--warna-border-gelap);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* =======================================================================================
+   6. Struktur Section, Hero, dan Layanan (±120 Baris)
+   ======================================================================================= */
+/* [KODE SECTION LAYANAN SAMA DENGAN SEBELUMNYA] */
+section {
+    padding: var(--padding-section); 
+    position: relative;
+    overflow: hidden;
+    background-color: var(--warna-latar);
+    border-bottom: 1px solid var(--warna-border-gelap);
+}
+
+#hero {
+    min-height: 100vh;
+    background-image: url('images/latar-ban.jpg'); 
+    background-attachment: fixed; 
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding-top: 150px; 
+    padding-bottom: 100px;
+}
+
+/* Overlay Gelap pada Hero */
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9); 
+    z-index: 5;
+}
+
+.hero-content {
+    z-index: 10;
+    max-width: 1000px;
+    padding: 0 20px;
+}
+
+/* Info Card di Hero */
+.info-card-hero {
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 25px 30px; 
+    border-radius: var(--radius-default);
+    border: 2px solid var(--warna-utama);
+    box-shadow: 0 0 15px rgba(255, 195, 0, 0.4);
+    margin-bottom: 20px;
+}
+.info-card-hero p {
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    font-weight: 300;
+}
+
+/* Icon untuk Layanan */
+.service-icon-ban {
+    font-size: 2.5em;
+    color: var(--warna-utama);
+    margin-bottom: 15px;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/* Item Layanan Rapi & Interaktif */
+.layanan-item {
+    background-color: #1A1A1A;
+    padding: 40px;
+    border-radius: 15px; 
+    border: 1px solid #333333;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.4s ease;
+    height: 100%; 
+}
+.layanan-item:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 20px 40px rgba(255, 195, 0, 0.4); 
+    background-color: #151515; 
+}
+.layanan-item:hover .service-icon-ban {
+    transform: scale(1.1);
+}
+
+/* List Styling Rapi dalam Item */
+.layanan-item ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+.layanan-item ul li {
+    margin-bottom: 8px; 
+    padding-left: 1.8em; 
+    position: relative;
+    font-weight: 300;
+    color: #CCCCCC;
+}
+.layanan-item ul li .fas, 
+.layanan-item ul li .fab { 
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+
+/* Grid Tata Letak */
+.grid-3-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* =======================================================================================
+   7. Tabel Harga Styling (±60 Baris)
+   ======================================================================================= */
+/* [KODE TABEL HARGA SAMA DENGAN SEBELUMNYA] */
+.tabel-harga {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0;
+    margin-top: 30px;
+    font-family: var(--font-body);
+    overflow: hidden; 
+    border-radius: var(--radius-default);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.tabel-harga th, .tabel-harga td {
+    padding: 18px 25px; 
+    text-align: left;
+}
+
+.tabel-harga thead tr {
+    background-color: var(--warna-utama);
+    color: var(--warna-kedua);
+    text-transform: uppercase;
+    font-size: 1.15em;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+}
+.tabel-harga thead th:first-child {
+    border-top-left-radius: var(--radius-default);
+}
+.tabel-harga thead th:last-child {
+    border-top-right-radius: var(--radius-default);
+}
+
+.tabel-harga tbody tr {
+    background-color: #222222;
+    transition: background-color 0.3s ease;
+}
+.tabel-harga tbody tr:nth-child(even) {
+    background-color: #2A2A2A;
+}
+.tabel-harga tbody tr:hover {
+    background-color: #383838;
+}
+
+.tabel-harga tbody td {
+    border-bottom: 1px solid var(--warna-border-gelap);
+    color: #CCCCCC;
+}
+.tabel-harga tbody tr:last-child td {
+    border-bottom: none;
+}
+.tabel-harga tbody tr:last-child td:first-child {
+    border-bottom-left-radius: var(--radius-default);
+}
+.tabel-harga tbody tr:last-child td:last-child {
+    border-bottom-right-radius: var(--radius-default);
+}
+
+/* =======================================================================================
+   8. Galeri Styling (±40 Baris)
+   ======================================================================================= */
+/* [KODE GALERI SAMA DENGAN SEBELUMNYA] */
+.galeri-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+.galeri-item {
+    overflow: hidden;
+    border-radius: var(--radius-default);
+    position: relative;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    cursor: zoom-in;
+    transition: transform 0.4s ease;
+}
+.galeri-item:hover {
+    transform: scale(1.03);
+}
+
+.galeri-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s ease;
+}
+
+.galeri-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+    color: var(--warna-teks);
+    padding: 20px 15px 10px;
+    transition: background 0.4s ease;
+}
+.galeri-overlay p {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.1em;
+    color: var(--warna-utama);
+}
+
+/* =======================================================================================
+   9. Animasi, Utility, dan Keyframes Tambahan (±60 Baris)
+   ======================================================================================= */
+/* [KODE ANIMASI SAMA DENGAN SEBELUMNYA] */
+
+/* Animasi Pulse Button */
+.pulse-anim {
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 195, 0, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(255, 195, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 195, 0, 0); }
+}
+
+/* Animasi Fade In Scroll (Intersection Observer) */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(80px) perspective(600px) rotateX(25deg); 
+    transition: all 1.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
+}
+
+.animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0) perspective(600px) rotateX(0deg);
+}
+
+.fade-in-delay-1 { transition-delay: 0.15s; }
+.fade-in-delay-2 { transition-delay: 0.30s; }
+.fade-in-delay-3 { transition-delay: 0.45s; }
+.fade-in-delay-4 { transition-delay: 0.60s; }
+.fade-in-delay-5 { transition-delay: 0.75s; }
+
+/* Utility Spacing */
+.margin-top-20 { margin-top: 20px; }
+.margin-top-30 { margin-top: 30px; }
+.margin-top-50 { margin-top: 50px; }
+.padding-30 { padding: 30px; }
+.border-top-dashed { border-top: 2px dashed var(--warna-border-gelap); padding-top: 30px; }
+
+/* =======================================================================================
+   10. Styling Khusus Media Sosial (Instagram) (±20 Baris)
+   ======================================================================================= */
+/* [KODE INSTAGRAM SAMA DENGAN SEBELUMNYA] */
+
+/* Warna Brand Instagram */
+.instagram-icon {
+    color: #E1306C !important; 
+    font-size: 1.1em; 
+}
+
+/* Styling link Instagram di list kontak */
+.layanan-item ul li a[href*="instagram"] {
+    color: var(--warna-utama);
+    transition: color 0.3s;
+    text-decoration: none;
+}
+.layanan-item ul li a[href*="instagram"]:hover {
+    color: #E1306C; 
+    text-decoration: underline;
+}
+
+/* =======================================================================================
+   11. Footer Styling (±30 Baris)
+   ======================================================================================= */
+/* [KODE FOOTER SAMA DENGAN SEBELUMNYA] */
+footer {
+    padding: 50px 0;
+    border-top: 10px solid var(--warna-utama); 
+    background-color: var(--warna-kedua);
+    text-align: center;
+    font-size: 0.9em;
+    color: #AAAAAA;
+}
+
+.footer-content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    color: #AAAAAA;
+    font-weight: 300;
+}
+
+/* =======================================================================================
+   12. Responsif Mobile (Media Queries) (±100 Baris)
+   ======================================================================================= */
+
+/* Tablet & Mobile (Max 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+    h1 { font-size: 4em; }
+    h2 { font-size: 2.8em; }
+    .btn { padding: 14px 35px; }
+    
+    /* Navigasi Responsif */
+    header .container {
+        flex-direction: column; /* Logo dan Menu Stacked */
+        align-items: center;
+    }
+    
+    /* LOGO di Kiri Responsif */
+    .logo-container {
+        margin-bottom: 15px;
+        margin-top: 5px;
+    }
+    .logo-img {
+        height: 45px; /* Logo sedikit lebih kecil di mobile */
+    }
+    .logo-text {
+        font-size: 1.5em;
+    }
+    
+    .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    nav ul li a {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    
+    /* Tabel Harga Responsif (sama dengan sebelumnya) */
+    /* ... kode tabel responsif ... */
+}
+
+/* Mobile Portrait (Max 768px) */
+@media (max-width: 768px) {
+    section { padding: 80px 0; }
+    h1 { font-size: 3em; letter-spacing: 3px; }
+    h2 { font-size: 2.2em; margin-bottom: 30px; border-bottom-width: 4px;}
+    h3 { font-size: 1.6em; }
+    
+    .hero-content { padding: 0 10px; }
+    .hero-tagline { font-size: 1.2em; }
+    
+    .grid-3-cols, .galeri-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Tabel Harga Responsif (Teks Lebih Rapi di Mobile) */
+    .tabel-harga { border: 1px solid var(--warna-border-gelap); }
+    .tabel-harga, .tabel-harga th, .tabel-harga td {
+        display: block;
+    }
+    
+    .tabel-harga thead { display: none; }
+    
+    .tabel-harga tbody tr { margin-bottom: 20px; display: block; border: 1px solid #444; border-radius: 8px; }
+    
+    .tabel-harga td {
+        border-bottom: 1px solid #444444;
+        position: relative;
+        padding-left: 55%;
+        text-align: right;
+        font-size: 0.95em;
+    }
+    
+    .tabel-harga td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+        color: var(--warna-utama);
+        font-family: var(--font-heading);
+    }
+    .tabel-harga tbody tr:last-child td {
+        border-bottom: 1px solid #444444; 
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}

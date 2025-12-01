@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami | Dua Putra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Hubungi Tambal Ban Dua Putra 24 jam untuk layanan panggilan darurat di Yogyakarta. Telepon, WhatsApp, dan Form Kontak.">
+    <meta name="keywords" content="nomor telepon tambal ban 24 jam, alamat tambal ban jogja, kontak darurat ban">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <img src="logozicco.png" alt="Logo Dua Putra" class="logo-img">
+                <span class="logo-text">Dua Putra</span>
+            </a>
+
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="tentang.html">Tentang Kami</a></li>
+                    <li><a href="galeri.html">Galeri Kerja</a></li>
+                    <li><a href="harga.html">Daftar Harga</a></li>
+                    <li><a href="kontak.html" class="active">Kontak Kami</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="kontak">
+        <div class="container" style="flex-direction: column; align-items: center;">
+            <h2 class="text-center animate-on-scroll">Hubungi Kami: Respon Cepat 24 Jam</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; max-width: 1000px; margin-top: 30px;">
+
+                <div class="layanan-item animate-on-scroll" style="padding: 30px;">
+                    <h3 style="margin-top: 0;"><i class="fas fa-headset"></i> Kontak Darurat 24/7</h3>
+                    <p>Untuk panggilan layanan darurat atau perbaikan ban segera, gunakan kontak tercepat di bawah ini:</p>
+                    
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li><i class="fas fa-phone-alt" style="color: var(--warna-utama);"></i> Telepon/SMS: 0831-8801-2790</li>
+                        <li><i class="fab fa-whatsapp" style="color: var(--warna-utama);"></i> WhatsApp (Paling Cepat): <a href="https://wa.me/6283188012790" class="text-highlight">Klik untuk Chat Langsung</a></li>
+                        
+                        <li><i class="fab fa-instagram instagram-icon"></i> Instagram Resmi: <a href="https://www.instagram.com/tambalbanpanggilan_duaputra_13" class="text-highlight">@tambalbanpanggilan_duaputra_13</a></li>
+                        
+                        <li><i class="fas fa-envelope" style="color: var(--warna-utama);"></i> Email Bisnis: info@duaputra.com (Untuk Kemitraan)</li>
+                        <li><i class="fas fa-clock" style="color: var(--warna-utama);"></i> Jam Operasional: 24 Jam Non-Stop, Setiap Hari</li>
+                    </ul>
+                    <p class="text-highlight margin-top-20">Tips Panggilan Darurat: Infokan Lokasi Tepat (Share Live Loc), Jenis Kendaraan, dan Jenis Kerusakan.</p>
+                </div>
+
+                <div class="layanan-item animate-on-scroll fade-in-delay-1" style="padding: 30px;">
+                    <h3 style="margin-top: 0;"><i class="fas fa-map-marker-alt"></i> Alamat Base Workshop</h3>
+                    <p>Workshop kami buka 24 jam dan berfungsi sebagai base utama untuk unit panggilan kami:</p>
+                    <p style="font-weight: bold; color: var(--warna-teks);">Jalan Bumijo Kulon No. 42, Bumijo, Kec. Jetis, Kota Yogyakarta, DIY 55231.</p>
+                    
+                    <div style="height: 250px; width: 100%; border: 1px solid var(--warna-utama); border-radius: var(--radius-default); overflow: hidden; margin-top: 15px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0768407870933!2d110.36006451477815!3d-7.794101494396181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5789a7f3d537%3A0x673c09f8e4e97653!2sTambal%20Ban%2024%20Jam%20Dua%20Putra!5e0!3m2!1sid!2sid!4v1638361026789!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="layanan-item animate-on-scroll fade-in-delay-2 margin-top-30" style="width: 100%; max-width: 1000px; padding: 40px;">
+                 <h3 class="text-center" style="margin-top: 0;"><i class="fas fa-comment-dots"></i> Kirim Pesan (Non-Darurat)</h3>
+                <p class="text-center" style="margin-bottom: 30px;">Untuk pertanyaan umum, kritik, saran, atau penawaran kerja sama, silakan gunakan formulir di bawah. Kami akan merespon dalam 1x24 jam.</p>
+                <form id="form-kontak" class="form-kontak">
+                    <div class="form-group">
+                        <label for="nama"><i class="fas fa-user"></i> Nama Lengkap:</label>
+                        <input type="text" id="nama" required placeholder="Cth: Bima Sakti">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email Anda:</label>
+                        <input type="email" id="email" required placeholder="Cth: bimasakti@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="pesan"><i class="fas fa-pen"></i> Pesan Anda:</label>
+                        <textarea id="pesan" rows="6" required placeholder="Tuliskan pesan, pertanyaan, atau saran Anda di sini..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Kirim Pesan Sekarang</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p>Tambal Ban Panggilan Dua Putra | Layanan Darurat 24 Jam di Jogja.</p>
+            <p>Jaminan Kualitas, Harga Transparan, dan Garansi Resmi.</p>
+            <p>© 2024 Dua Putra. Seluruh Hak Cipta Dilindungi. </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
